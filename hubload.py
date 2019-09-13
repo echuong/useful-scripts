@@ -80,8 +80,8 @@ def main(argv=None):
 	optional.add_option('-a', '--autoScale', help="autoScale [%default]", dest='autoScale', default="off", action='store')
 	optional.add_option('-c', '--color', help="color [%default]", dest='color', default="15,15,150", action='store')
 	optional.add_option('-v', '--visibility', help="visibility [%default]", dest='visibility', default=None, action='store')
-	optional.add_option('-w', '--viewLimits', help="viewLimits [%default]", dest='viewLimits', default="0:1", action='store')
-	optional.add_option('-m', '--maxHeightPixels', help="viewLimits [%default]", dest='maxHeightPixels', default="64:20:10", action='store')
+	optional.add_option('-w', '--viewLimits', help="viewLimits [%default]", dest='viewLimits', default="0:5", action='store')
+	optional.add_option('-m', '--maxHeightPixels', help="viewLimits [%default]", dest='maxHeightPixels', default="64:40:10", action='store')
 	optional.add_option('-z', '--alwaysZero', help="alwaysZero [%default]", dest='alwaysZero', default="on", action='store')
 	optional.add_option('-p', '--priority', help="priority [%default]", dest='priority', default="1", action='store')
 	optional.add_option('-g', '--supertrack', help="supertrack [%default]", dest='supertrack', default="ungrouped", action='store')
@@ -163,11 +163,11 @@ def main(argv=None):
 	trackDirectory = os.path.dirname(opts.trackDb)
 	# set some defaults
 	if opts.name is None:
-		opts.name = basename
+		opts.name = baseFullFileName
 	if opts.longLabel is None:
-		opts.longLabel = basename
+		opts.longLabel = baseFullFileName
 	if opts.shortLabel is None:
-		opts.shortLabel = basename
+		opts.shortLabel = baseFullFileName
 	
 	# No same-name collisions allowed
 	if opts.name in allTrackNames:
