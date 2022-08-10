@@ -10,7 +10,18 @@ import sys
 import getopt
 
 help_message = '''
-The help message goes here.
+Use to collapse bed files to their TSS (based on strand).
+
+
+# To go from a gtf file (1-based), convert GTF/GFF to bed following these examples:
+# if the chromsomes are in ENSEMBL "1" format
+cat Canis_familiaris.CanFam3.1.92.chr.gtf | awk 'OFS="\t" {if ($3=="gene") {print "chr"$1,$4-1,$5,$10,0,$7}}' | tr -d '";' >canFam3.ensGene.bed
+
+# If the chromosomes are standard UCSC "chr1" format
+cat Canis_familiaris.CanFam3.1.92.chr.gtf | awk 'OFS="\t" {if ($3=="gene") {print $1,$4-1,$5,$10,0,$7}}' | tr -d '";' >canFam3.ensGene.bed
+
+# To extract transcript TSS from a gtf file:
+cat hg38.Gencode.v34.Comp.Main.gtf | awk 'OFS="\t" {if ($3=="transcript") {print $1,$4-1,$5,$12,0,$7}}' | tr -d '";' >gencode.v34.transcripts.bed
 '''
 
 
